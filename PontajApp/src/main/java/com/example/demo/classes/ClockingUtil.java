@@ -47,13 +47,13 @@ public abstract class ClockingUtil {
 
 		StringBuilder monthYear = new StringBuilder();
 		monthYear.append(previousMonthName);
-		monthYear.append(" ");
+		monthYear.append("-");
 		monthYear.append(previousMonthYear);
 		monthsToDisplay.add(monthYear.toString());
 
 		StringBuilder monthYear2 = new StringBuilder();
 		monthYear2.append(currentMonthName);
-		monthYear2.append(" ");
+		monthYear2.append("-");
 		monthYear2.append(currentMonthYear);
 		monthsToDisplay.add(monthYear2.toString());
 
@@ -81,22 +81,24 @@ public abstract class ClockingUtil {
 				workTime += start.getTime() - stop.getTime(); // milliseconds
 
 				Calendar cal = Calendar.getInstance();
+				cal.setLenient(false);
 				cal.setTime(cd.getCurrentDate());
 
 				// if Friday
-//				norma += (cal.get(Calendar.DAY_OF_WEEK) == 6) ? dateFormat.parse("06:30").getTime()
-//						: dateFormat.parse("09:00").getTime();
-				norma+= dateFormat.parse("08:30").getTime();
+				norma += (cal.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) ? dateFormat.parse("06:30").getTime()
+						: dateFormat.parse("09:00").getTime();
+				// norma+= dateFormat.parse("08:30").getTime();
 
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
 
 		}
-		diff = norma - workTime;
-		long diffMinutes = diff / (60 * 1000) % 60;
-		long diffHours = diff / (60 * 60 * 1000) % 24;
 		
+		diff = norma - workTime;
+		long diffMinutes = (diff / (60 * 1000)) % 60;
+		long diffHours = (diff / (60 * 60 * 1000)) % 24;
+
 		return diffHours + ":" + diffMinutes;
 	}
 

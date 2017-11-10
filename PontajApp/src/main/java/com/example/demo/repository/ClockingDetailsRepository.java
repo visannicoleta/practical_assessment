@@ -10,6 +10,6 @@ import com.example.demo.classes.ClockingDetails;
 
 public interface ClockingDetailsRepository extends CrudRepository<ClockingDetails, Integer>{
 
-//	@Query("SELECT c from ClockingDetails e where MONTH(c.currentDate) = MONTH(?1)")
-//	public List<ClockingDetails> findByMonthSpecial(Date currentDate);
+//	@Query("from ClockingDetails c where to_char(currentDate, 'YYYY/MM') = '2017/11' ")
+//	public List<ClockingDetails> findByMonthSpecial(Date date);
 }
