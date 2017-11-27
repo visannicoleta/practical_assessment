@@ -22,10 +22,6 @@ public class StudentController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ResponseEntity<StudentResult> postStudentResult(@RequestBody Student stud){
-//		Student stud = new Student();
-//		stud.setStudentFirstName("John");
-//		stud.setStudentLastName("Doe");
-		
 		StudentResult studResult = null;
 		
 		if(stud != null){
